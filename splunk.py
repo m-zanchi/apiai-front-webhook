@@ -37,7 +37,7 @@ def Check_Site_Status(req):
     # userAndPass = b64encode(b"username:password").decode("ascii")
     headers = {
     'content-type': "application/x-www-form-urlencoded",
-    'authorization': "Basic "+os.environ.get('splunk_auth')+"=="
+    'authorization': "Basic "+os.environ.get('splunk_auth')+"=="}
     try:
         conn.request("POST", "/rest-ealadev/services/search/jobs", payload, headers)
         res = conn.getresponse()
