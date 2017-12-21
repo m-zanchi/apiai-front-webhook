@@ -89,7 +89,7 @@ def makeWebhookResult(data3):
     for i in data['results']:
          speech = speech + "The web site was " + i["status"] + " last time checked " + i["last_check"] + " minutes ago."
     if (i["status"] == 'KO'):
-        speech = speech + "Do you want to me to try to start it?"
+        speech = speech + " Do you want to me to try to start it?"
     print("Speech:")
     print(speech)
     return {

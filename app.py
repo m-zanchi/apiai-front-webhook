@@ -13,6 +13,7 @@ import os
 import time
 import http.client
 import splunk
+import ec2
 from xml.dom import minidom
 
 from flask import Flask
@@ -40,9 +41,14 @@ def webhook():
     return r
 
 def processRequest(req):
-    if req.get("result").get("action") != "Check_Site_Status":
-        return {}
-    webhookres = splunk.Check_Site_Status(req)
+    if req.get("result").get("action") == "Check_Site_Status":
+        webhookres = splunk.Check_Site_Status(req)
+    elif req.get("result").get("action") == "StartApplication":
+        webhookres = ec2.Start_Instance(req)
+    else:
+        return
+
+
     return webhookres
 
 if __name__ == '__main__':
