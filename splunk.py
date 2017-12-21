@@ -42,6 +42,7 @@ def Check_Site_Status(req):
         conn.request("POST", "/rest-ealadev/services/search/jobs", payload, headers)
         res = conn.getresponse()
         data = res.read()
+        print (data)
     except Exception as e:
         print (e)
 
