@@ -79,7 +79,7 @@ def Check_Site_Status(req):
 def makeYqlQuery(req):
 #   result = req.get("result")
 #    parameters = result.get("parameters")
-    return 'index="site_monitor" | head 1 | eval last_check=round((now()-_time)/60,0)  | table status, last_check'
+    return 'search * index="site_monitor" | head 1 | eval last_check=round((now()-_time)/60,0)  | table status, last_check'
 
 
 def makeWebhookResult(data3):
