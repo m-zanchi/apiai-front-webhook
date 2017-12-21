@@ -1,0 +1,7 @@
+{
+  "name": "API.AI webhook",
+  "description": "API.AI Splunk webhook",
+  "repository": "https://github.com/m-zanchi/apiai-splunk-webhook",
+  "logo": "http://xvir.github.io/img/apiai.png",
+  "keywords": [ "api.ai", "natural language" ]
+}
