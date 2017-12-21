@@ -38,11 +38,12 @@ def Check_Site_Status(req):
     headers = {
     'content-type': "application/x-www-form-urlencoded",
     'authorization': "Basic "+os.environ.get('splunk_auth')+"=="
-    }
-
-    conn.request("POST", "/rest-ealadev/services/search/jobs", payload, headers)
-    res = conn.getresponse()
-    data = res.read()
+    try:
+        conn.request("POST", "/rest-ealadev/services/search/jobs", payload, headers)
+        res = conn.getresponse()
+        data = res.read()
+    except Exception as e:
+        print (e)
 
     sid = minidom.parseString(data).getElementsByTagName('sid')[0].childNodes[0].nodeValue
     
