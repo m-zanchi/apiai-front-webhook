@@ -78,7 +78,7 @@ def Check_Site_Status(req):
 
 def makeYqlQuery(req):
 #   result = req.get("result")
-#    parameters = result.get("parameters")
+#   parameters = result.get("parameters")
     return 'search * index="site_monitor" | head 1 | eval last_check=round((now()-_time)/60,0)  | table status, last_check'
 
 
@@ -87,8 +87,9 @@ def makeWebhookResult(data3):
     data = json.loads(data3)
     speech = ""
     for i in data['results']:
-         speech = speech + "The web site was " + i["status"] + " last time checked " + i["last_check"] + "minutes ago."
-    
+         speech = speech + "The web site was " + i["status"] + " last time checked " + i["last_check"] + " minutes ago."
+    if (i["status"] == 'KO'):
+        speech = speech + "Do you want to me to try to start it?"
     print("Speech:")
     print(speech)
     return {
