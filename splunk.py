@@ -14,6 +14,9 @@ import time
 import http.client
 from xml.dom import minidom
 
+import os
+
+
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -32,9 +35,10 @@ def Check_Site_Status(req):
     payload = urlencode({"search" : yql_query})
     print(payload)
     # userAndPass = b64encode(b"username:password").decode("ascii")
+
     headers = {
     'content-type': "application/x-www-form-urlencoded",
-    'authorization': "Basic bWF0dGVvX3Jlc3Q6cmVzdGFjY2Vzcw=="
+    'authorization': "Basic "+os.environ.get('splunk_auth')+"=="
     }
     conn.request("POST", "/rest-ealadev/services/search/jobs", payload, headers)
     res = conn.getresponse()
